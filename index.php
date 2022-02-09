@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +15,8 @@
 
 <body>
     <!-- Body of Form -->
+<br>
+    <form action="index.php" method="post">
     <div class="container-fluid bg-light">
         <div class="row m-4">
             <div class="col-1 m-1"></div>
@@ -24,31 +27,64 @@
 
                         <h4 class="d-inline mx-5">Mwiki Health Center</h4>
                         <h5 class="mb-2">Patient Data Collection Form</h5>
+                        <?php
+                        include ("connect.php");
+                        if (isset($_POST['submit'])) {
+                          # code...
+                           $area=$_POST["Area"];
+                            $patientNo=$_POST["No"];
+  $firstName=$_POST['firstName'];
+  $nhifNo=$_POST['nhifNo'];
+  $lastName=$_POST['lastName'];
+  $email=$_POST['email'];
+  $lastVisit=$_POST['lastVisit'];
+                           if (empty($area)) {
+    # code...
+     $errors= 'Area of Residence is  required *';
+     echo "$errors";
+  } else {
+    # code...
+  echo "$area <br>";
+   
+    echo "$firstName ";
+     echo "$lastName <br>";
+      echo "$lastVisit <br>";
+       echo "$email <br>";
+        echo "$nhifNo <br>";
+
+  }
+                        } else {
+                          # code...
+                          echo " <h5>Kindly Fill The Form</h5> ";
+                        }
+                         ?>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
                                 <!-- Name input -->
                                 <div class="form-outline">
-                                    <label class="form-label" for="form8Example1">Patient No</label
+                                    <label class="form-label" for="No">Patient No</label
                     >
 
                     <input
                       type="text"
-                      id="form8Example1"
+                      id="No"
+                  name="No"
                       class="form-control"
                     />
                   </div>
                 </div>
                 <div class="col">
-                  <!-- Email input -->
+                  <!-- Area input -->
                   <div class="form-outline">
-                    <label class="form-label" for="form8Example2"
+                    <label class="form-label" for="Area"
                       >Area Of Residence</label
                     >
                     <input
-                      type="email"
-                      id="form8Example2"
+                      type="text"
+                      name="Area"
+                      id="Area"
                       class="form-control"
                     />
                   </div>
@@ -66,6 +102,7 @@
                     >
                     <input
                       type="text"
+                      name='firstName'
                       id="form8Example3"
                       class="form-control"
                     />
@@ -80,6 +117,7 @@
                     <input
                       type="text"
                       id="form8Example4"
+                      name='lastName'
                       class="form-control"
                     />
                   </div>
@@ -92,6 +130,7 @@
                     >
                     <input
                       type="email"
+                      name='email'
                       id="form8Example5"
                       class="form-control"
                     />
@@ -102,20 +141,20 @@
               <!-- Name input -->
               <div class="form-outline">
                 <label class="form-label" for="form8Example1">Nhif No</label>
-                                    <input type="text" id="form8Example1" class="form-control" />
+                                    <input name="nhifNo" type="text" id="form8Example1" class="form-control" />
                                 </div>
                                 <hr />
 
                                 <div class="row">
                                     <div class="col-auto">
                                         <div class="form-outline">
-                                            <label class="form-label mx-2" for="birthday">Last Visit</label
+                                            <label class="form-label mx-2" for="lastVisit">Last Visit</label
                     >
                     <input
                       type="date"
-                      id="birthday"
+                      id="lastVisit"
                       placeholder="28/01/2022"
-                      name="birthday"
+                      name="lastVisit"
                     />
                   </div>
                 </div>
@@ -125,6 +164,7 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
+                      name='checkbox'
                       value=""
                       id="form11Example2"
                       checked
@@ -137,8 +177,8 @@
                                     <hr />
 
                                     <div class="">
-                                        <label class="form-label" for="customFile">Upload Data</label>
-                                        <input type="file" class="form-control" id="customFile" />
+                                        <label class="form-label"  for="customFile">Upload Data</label>
+                                        <input type="file" name="uploadFile" class="form-control" id="customFile" />
                                     </div>
 
                                     <br />
@@ -148,7 +188,7 @@
                                 <div class="card-footer">
                                     <div class="my-2">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="form11Example4" />
+                                            <input name="termsCheckBox" class="form-check-input" type="checkbox" id="form11Example4" />
                                             <label class="form-check-label" for="form11Example4">
                       I have read and agreed on
                       <a href="#">
@@ -159,7 +199,7 @@
                     </label>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit"  name="submit"class="btn btn-primary">
                       Submit
                     </button>
                                         </div>
@@ -176,6 +216,7 @@
             </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</form>
 </body>
 
 </html>
